@@ -17,140 +17,138 @@
             position: relative;
         }
 
-        .agent {
+         .agent {
              position: absolute;
-           width: 60px;
-            height: 60px;
-             border-radius: 50%;
-            overflow: hidden;
-             display: flex;
-           justify-content: center;
-          align-items: center;
-           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-       }
+            width: 70px;
+              height: 70px;
+            border-radius: 50%;
+             overflow: hidden;
+              display: flex;
+             justify-content: center;
+           align-items: center;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+           }
 
         .agent img {
             width: 100%;
             height: 100%;
-           object-fit: cover;
-           border-radius: 50%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .agent-info {
-           position: absolute;
-            bottom: 0;
-           left: 0;
-             background: rgba(255, 255, 255, 0.7);
-             padding: 5px;
-            border-radius: 5px;
-           font-size: 11px;
-          width: max-content;
-          margin-bottom: 5px;
+             position: absolute;
+             bottom: 0;
+            left: 0;
+              background: rgba(255, 255, 255, 0.7);
+               padding: 5px;
+               border-radius: 5px;
+             font-size: 11px;
+           width: max-content;
+             margin-bottom: 5px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-           }
+         }
 
-        #dialogueBox {
-            position: absolute;
+         #dialogueBox {
+             position: absolute;
              top: 10px;
-             left: 10px;
+            left: 10px;
            background: white;
             padding: 15px;
             border-radius: 10px;
-           max-height: 300px;
-          overflow-y: scroll;
-            width: 320px;
-             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+           overflow-y: scroll;
+             width: 320px;
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
              display: flex;
              flex-direction: column;
-         }
+        }
 
         #dialogueBox .message {
             padding: 8px;
-           margin-bottom: 5px;
-           border-radius: 8px;
-            background-color: #f0f0f0;
-        }
-
-       #uiPanel {
-            position: absolute;
-             bottom: 10px;
-             left: 10px;
-             background: white;
-             padding: 15px;
-            border-radius: 10px;
-             width: 320px;
-           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #uiPanel p {
-             margin: 5px 0;
-            font-size: 14px;
-            color: #333;
-           text-align: left;
+            margin-bottom: 5px;
+          border-radius: 8px;
+              background-color: #f0f0f0;
        }
-       #apiInput {
-           position: absolute;
+        #uiPanel {
+             position: absolute;
+           bottom: 10px;
+            left: 10px;
+              background: white;
+             padding: 15px;
+              border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         }
+        #uiPanel p {
+            margin: 5px 0;
+             font-size: 14px;
+             color: #333;
+            text-align: left;
+       }
+        #apiInput {
+             position: absolute;
             top: 10px;
             right: 10px;
-              padding: 15px;
-             background: white;
-            border-radius: 10px;
-           width: 320px;
-           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-         }
-       #apiInput label {
+             padding: 15px;
+              background: white;
+           border-radius: 10px;
+              width: 320px;
+             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #apiInput label {
            display: block;
             margin-bottom: 5px;
-           font-size: 14px;
-           color: #555;
-             text-align: left;
-        }
-       #apiInput input {
-           margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
             font-size: 14px;
-            color: #333;
-           width: 100%;
+           color: #555;
+              text-align: left;
+        }
+        #apiInput input {
+            margin-bottom: 10px;
+           padding: 10px;
+            border: 1px solid #ddd;
+             border-radius: 5px;
+            font-size: 14px;
+             color: #333;
+            width: 100%;
               box-sizing: border-box;
-       }
+        }
          #apiInput select {
              margin-bottom: 10px;
                 padding: 10px;
                  border: 1px solid #ddd;
-                border-radius: 5px;
+               border-radius: 5px;
                 font-size: 14px;
-                 color: #333;
-               width: 100%;
-                box-sizing: border-box;
-           }
-        #llmSelect {
+                color: #333;
+                width: 100%;
+              box-sizing: border-box;
+       }
+       #llmSelect {
             margin-bottom: 10px;
-         }
-          .loading {
+          }
+        .loading {
             position: absolute;
              top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-             font-size: 18px;
-            color: #555;
-           }
-         .hidden {
-            display: none;
+             left: 50%;
+             transform: translate(-50%, -50%);
+            font-size: 18px;
+             color: #555;
          }
-        .agent-name {
-            position: absolute;
-           top: 0;
-            left: 0;
-            width: 100%;
+        .hidden {
+             display: none;
+          }
+       .agent-name {
+         position: absolute;
+           top: -15px; /* 이미지 위로 살짝 이동 */
+           left: 0;
+          width: 100%;
            text-align: center;
-           font-size: 12px;
-           color: #333;
-          margin-top: 2px;
-         }
+            font-size: 12px;
+            color: #333;
+       }
     </style>
 </head>
+
 <body>
     <canvas id="simCanvas"></canvas>
     <div id="dialogueBox"></div>
@@ -160,306 +158,308 @@
     </div>
     <div id="apiInput">
         <label for="geminiApiKey">Gemini API Key:</label>
-        <input type="text" id="geminiApiKey" placeholder="Enter Gemini API key"><br>
-         <label for="gptApiKey">GPT API Key:</label>
-           <input type="text" id="gptApiKey" placeholder="Enter GPT API key"><br>
-        <label for="llmSelect">LLM:</label>
+         <input type="text" id="geminiApiKey" placeholder="Enter Gemini API key"><br>
+        <label for="gptApiKey">GPT API Key:</label>
+         <input type="text" id="gptApiKey" placeholder="Enter GPT API key"><br>
+         <label for="llmSelect">LLM:</label>
         <select id="llmSelect">
-            <option value="gemini">Gemini</option>
-            <option value="gpt">GPT</option>
+             <option value="gemini">Gemini</option>
+              <option value="gpt">GPT</option>
             <option value="random">Random</option>
-        </select>
+         </select>
     </div>
-     <div id="loading" class="loading hidden">Loading...</div>
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+   <div id="loading" class="loading hidden">Loading...</div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         const canvas = document.getElementById('simCanvas');
          const ctx = canvas.getContext('2d');
         const dialogueBox = document.getElementById('dialogueBox');
-       const currentTimeDisplay = document.getElementById("currentTime");
-         const currentWeatherDisplay = document.getElementById("currentWeather");
+         const currentTimeDisplay = document.getElementById("currentTime");
+       const currentWeatherDisplay = document.getElementById("currentWeather");
          const geminiApiKeyInput = document.getElementById('geminiApiKey');
-        const gptApiKeyInput = document.getElementById('gptApiKey');
-       const llmSelect = document.getElementById('llmSelect');
+         const gptApiKeyInput = document.getElementById('gptApiKey');
+         const llmSelect = document.getElementById('llmSelect');
         const loadingDiv = document.getElementById("loading");
-         const SUPABASE_URL = 'https://ywervfparbnwkwepubzw.supabase.co';
-          const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl3ZXJ2ZnBhcmJud2t3ZXB1Ynp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2ODg1MDMsImV4cCI6MjA1MjI2NDUwM30.U2cVopv3j4amemDW2-sqzSBfoSoun9sBk37g3uSJx8k';
+          const SUPABASE_URL = 'https://ywervfparbnwkwepubzw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl3ZXJ2ZnBhcmJud2t3ZXB1Ynp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY2ODg1MDMsImV4cCI6MjA1MjI2NDUwM30.U2cVopv3j4amemDW2-sqzSBfoSoun9sBk37g3uSJx8k';
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.backgroundImage = "url('bg.png')";
-        const AGENT_SIZE = 60;
-         const AGENT_SPEED = 0.3;
+         const AGENT_SIZE = 70;
+          const AGENT_SPEED = 0.2;
          const INTERACTION_RADIUS = 100;
-        const INTERACTION_TIME_DELAY = 1000;
-       const WEATHER_TYPES = ["Sunny", "Cloudy", "Rainy", "Snowy", "Windy", "Foggy"];
+         const INTERACTION_TIME_DELAY = 1000;
+         const WEATHER_TYPES = ["Sunny", "Cloudy", "Rainy", "Snowy", "Windy", "Foggy"];
         const IMAGES = [
              "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png"
-         ];
-        const AGENT_NAMES = ["Alice", "Bob", "Charlie", "Diana", "Eva", "Frank", "Grace", "Harry", "Ivy", "Jack"]
-       const MBTI_CHOICES = ["E", "I", "S", "N", "T", "F", "J", "P"];
-       let agents = [];
+        ];
+          const AGENT_NAMES = ["Alice", "Bob", "Charlie", "Diana", "Eva", "Frank", "Grace", "Harry", "Ivy", "Jack"]
+          const MBTI_CHOICES = ["E", "I", "S", "N", "T", "F", "J", "P"];
+        let agents = [];
         let nextAgentId = 0;
         let interactions = [];
          let currentHour = 0;
-       let currentMinute = 0;
-       let weatherData = {};
+         let currentMinute = 0;
+        let weatherData = {};
 
-       function showLoading() {
-          loadingDiv.classList.remove("hidden");
-       }
-        function hideLoading() {
-           loadingDiv.classList.add("hidden");
+        function showLoading() {
+             loadingDiv.classList.remove("hidden");
          }
-        function determineLLM(apiKey) {
-              if (apiKey.startsWith("AIza"))
-                   return "gemini";
-             else if (apiKey.startsWith("sk-"))
-                  return "gpt";
+          function hideLoading() {
+             loadingDiv.classList.add("hidden");
+        }
+       function determineLLM(apiKey) {
+           if (apiKey.startsWith("AIza"))
+               return "gemini";
+           else if (apiKey.startsWith("sk-"))
+               return "gpt";
            else
                 return null;
-         }
-       class Agent {
-           constructor(id) {
-             this.id = id;
-             this.name = AGENT_NAMES[id];
-                this.x = Math.random() * canvas.width;
-              this.y = Math.random() * canvas.height;
-                this.targetX = this.x;
-              this.targetY = this.y;
-              this.dialogueHistory = [];
-                 this.mbti = `${MBTI_CHOICES[Math.floor(Math.random() * 2)]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 2]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 4]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 6]}`;
-                this.money = Math.floor(Math.random() * 1000);
-                this.interests = ["AI", "hiking", "reading", "coding", "gaming", "music", "history", "literature", "travel"];
-               this.imageUrl = IMAGES[id % IMAGES.length];
-                 this.llm = llmSelect.value;
-                this.isSleeping = false;
-                 this.actionCooldown = 0;
-                this.element = document.createElement('div');
-              this.element.classList.add('agent');
-              this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
-                this.element.style.top = `${this.y - AGENT_SIZE / 2}px`;
-                this.element.innerHTML = `<img src="${this.imageUrl}" alt="${this.name}"><div class="agent-name">${this.name}</div>`;
-              this.infoElement = document.createElement('div');
-             this.infoElement.classList.add('agent-info');
-              this.infoElement.innerHTML = `MBTI: ${this.mbti}<br>Money: $${this.money}`;
-                 this.element.appendChild(this.infoElement);
-                 document.body.appendChild(this.element);
           }
-           move() {
-                if (this.isSleeping) return;
+         class Agent {
+             constructor(id) {
+                 this.id = id;
+                 this.name = AGENT_NAMES[id];
+               this.x = Math.random() * canvas.width;
+              this.y = Math.random() * canvas.height;
+                 this.targetX = this.x;
+                this.targetY = this.y;
+                this.dialogueHistory = [];
+                 this.mbti = `${MBTI_CHOICES[Math.floor(Math.random() * 2)]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 2]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 4]}${MBTI_CHOICES[Math.floor(Math.random() * 2) + 6]}`;
+               this.money = Math.floor(Math.random() * 1000);
+                 this.interests = ["AI", "hiking", "reading", "coding", "gaming", "music", "history", "literature", "travel"];
+                 this.imageUrl = IMAGES[id % IMAGES.length];
+                 this.llm = llmSelect.value;
+                 this.isSleeping = false;
+                 this.actionCooldown = 0;
+               this.element = document.createElement('div');
+              this.element.classList.add('agent');
+             this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
+               this.element.style.top = `${this.y - AGENT_SIZE / 2}px`;
+               this.element.innerHTML = `<img src="${this.imageUrl}" alt="${this.name}"><div class="agent-name">${this.name}</div>`;
+              this.infoElement = document.createElement('div');
+              this.infoElement.classList.add('agent-info');
+                this.infoElement.innerHTML = `MBTI: ${this.mbti}<br>Money: $${this.money}`;
+               this.element.appendChild(this.infoElement);
+              document.body.appendChild(this.element);
+          }
+          move() {
+              if (this.isSleeping) return;
                if (Math.abs(this.x - this.targetX) < 1 && Math.abs(this.y - this.targetY) < 1) {
-                   this.targetX = Math.random() * canvas.width;
-                    this.targetY = Math.random() * canvas.height;
+                    this.targetX = Math.random() * canvas.width;
+                  this.targetY = Math.random() * canvas.height;
                 }
-                const dx = this.targetX - this.x;
-              const dy = this.targetY - this.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
+                 const dx = this.targetX - this.x;
+               const dy = this.targetY - this.y;
+                 const distance = Math.sqrt(dx * dx + dy * dy);
               if (distance > 0) {
-                   this.x += (dx / distance) * AGENT_SPEED;
+                    this.x += (dx / distance) * AGENT_SPEED;
                     this.y += (dy / distance) * AGENT_SPEED;
-              }
-              this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
+                 }
+                this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
               this.element.style.top = `${this.y - AGENT_SIZE / 2}px`;
           }
          async startDialogue(otherAgent, topic) {
-               const geminiApiKey = geminiApiKeyInput.value;
-                const gptApiKey = gptApiKeyInput.value;
-              const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(geminiApiKey) || "gemini") : (determineLLM(gptApiKey) || "gpt")) : (determineLLM(geminiApiKey) || determineLLM(gptApiKey) || this.llm)
+                const geminiApiKey = geminiApiKeyInput.value;
+               const gptApiKey = gptApiKeyInput.value;
+            const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(geminiApiKey) || "gemini") : (determineLLM(gptApiKey) || "gpt")) : (determineLLM(geminiApiKey) || determineLLM(gptApiKey) || this.llm)
                    const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. You are about to start a conversation with ${otherAgent.name} with MBTI type ${otherAgent.mbti} and $${otherAgent.money}. Start the conversation with the topic: ${topic}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
-              try {
-                  showLoading();
-                   const response = await this.callLLM(selectedLLM, prompt);
+             try {
+                showLoading();
+                const response = await this.callLLM(selectedLLM, prompt);
                     const reply = response;
-                     const message = {
-                        sender: this.name,
-                        text: reply,
-                        timestamp: new Date().toISOString(),
-                        };
-                        await supabase
-                             .from('messages')
-                            .insert([message]);
-                 otherAgent.dialogueHistory.push({ speaker: this.name, response: reply });
-                    return reply;
-                } catch (error) {
-                     console.error(`Failed to make startDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
-                    return `Error occurred during dialogue`;
-                  } finally {
-                    hideLoading();
-                }
-            }
-            async continueDialogue(otherAgent, lastUtterance) {
-              const geminiApiKey = geminiApiKeyInput.value;
-              const gptApiKey = gptApiKeyInput.value;
-              const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(geminiApiKey) || "gemini") : (determineLLM(gptApiKey) || "gpt")) : (determineLLM(geminiApiKey) || determineLLM(gptApiKey) || this.llm)
-                 const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. Based on the following conversation and your personal information, continue the conversation. ${otherAgent.name}: ${lastUtterance}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
-               try {
-                 showLoading();
-                 const response = await this.callLLM(selectedLLM, prompt);
-                     const reply = response;
                         const message = {
-                          sender: this.name,
+                           sender: this.name,
                              text: reply,
-                            timestamp: new Date().toISOString(),
+                             timestamp: new Date().toISOString(),
                         };
-                        await supabase
-                           .from('messages')
-                           .insert([message]);
-                     otherAgent.dialogueHistory.push({speaker: this.name, response: reply});
+                       await supabase
+                             .from('messages')
+                             .insert([message]);
+                   otherAgent.dialogueHistory.push({ speaker: this.name, response: reply });
                     return reply;
-               } catch (error) {
+                 } catch (error) {
+                   console.error(`Failed to make startDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
+                      return `Error occurred during dialogue`;
+               } finally {
+                   hideLoading();
+                }
+          }
+           async continueDialogue(otherAgent, lastUtterance) {
+                 const geminiApiKey = geminiApiKeyInput.value;
+                 const gptApiKey = gptApiKeyInput.value;
+                  const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(geminiApiKey) || "gemini") : (determineLLM(gptApiKey) || "gpt")) : (determineLLM(geminiApiKey) || determineLLM(gptApiKey) || this.llm)
+               const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. Based on the following conversation and your personal information, continue the conversation. ${otherAgent.name}: ${lastUtterance}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
+             try {
+                   showLoading();
+                   const response = await this.callLLM(selectedLLM, prompt);
+                   const reply = response;
+                    const message = {
+                        sender: this.name,
+                          text: reply,
+                            timestamp: new Date().toISOString(),
+                     };
+                       await supabase
+                           .from('messages')
+                             .insert([message]);
+                    otherAgent.dialogueHistory.push({speaker: this.name, response: reply});
+                   return reply;
+              } catch (error) {
                   console.error(`Failed to make continueDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
                     return `Error occurred during dialogue`;
                 } finally {
-                    hideLoading();
-                 }
-           }
-            async callLLM(llm, prompt) {
-               let apiKey = "";
-              if(llm === "gemini") {
+                 hideLoading();
+                }
+            }
+             async callLLM(llm, prompt) {
+                let apiKey = "";
+                if(llm === "gemini") {
                     apiKey = geminiApiKeyInput.value;
-                } else if (llm === "gpt"){
-                    apiKey = gptApiKeyInput.value;
-                  }
+               } else if (llm === "gpt"){
+                   apiKey = gptApiKeyInput.value;
+               }
                 if (!apiKey) {
-                     throw new Error("API key is required");
-                 }
-                    try {
-                   if (llm === "gemini") {
-                         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                            method: 'POST',
-                             headers: {
-                                'Content-Type': 'application/json'
-                                 },
-                            body: JSON.stringify({
-                                  contents: [{
-                                        parts: [{ text: prompt }],
-                                }],
-                               }),
-                          });
-                            if (!response.ok) {
-                              const errorText = await response.text();
-                                throw new Error(`Gemini API request failed with status ${response.status}: ${errorText}`);
-                          }
-                      const data = await response.json();
-                        return data.candidates[0].content.parts[0].text;
-                    } else if (llm === "gpt") {
-                           const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
-                            method: 'POST',
+                 throw new Error("API key is required");
+                }
+                   try {
+                  if (llm === "gemini") {
+                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                             method: 'POST',
                               headers: {
-                                 'Content-Type': 'application/json',
-                                   'Authorization': `Bearer ${apiKey}`
+                                   'Content-Type': 'application/json'
                                 },
-                             body: JSON.stringify({
-                                    model: 'gpt-3.5-turbo',
-                                    messages: [{
-                                        role: "user",
-                                        content: prompt
-                                       }]
+                            body: JSON.stringify({
+                                     contents: [{
+                                      parts: [{ text: prompt }],
+                                        }],
                                 }),
-                            });
-                              if (!response.ok) {
-                                const errorText = await response.text();
-                                  throw new Error(`GPT API request failed with status ${response.status}: ${errorText}`);
+                           });
+                           if (!response.ok) {
+                             const errorText = await response.text();
+                               throw new Error(`Gemini API request failed with status ${response.status}: ${errorText}`);
                             }
                         const data = await response.json();
-                          return data.choices[0].message.content;
+                        return data.candidates[0].content.parts[0].text;
+                     } else if (llm === "gpt") {
+                        const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
+                             method: 'POST',
+                              headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${apiKey}`
+                                 },
+                            body: JSON.stringify({
+                                     model: 'gpt-3.5-turbo',
+                                    messages: [{
+                                           role: "user",
+                                          content: prompt
+                                      }]
+                                }),
+                             });
+                             if (!response.ok) {
+                                 const errorText = await response.text();
+                                  throw new Error(`GPT API request failed with status ${response.status}: ${errorText}`);
+                              }
+                         const data = await response.json();
+                         return data.choices[0].message.content;
                     } else {
                          throw new Error("Invalid LLM selected");
-                  }
+                     }
                 } catch (error) {
-                   console.error(`Failed to call ${llm.toUpperCase()} API: `, error);
-                     throw error;
-               }
-           }
-           work() {
-                 if (this.isSleeping) return;
-                this.money += Math.floor(Math.random() * 10) + 10;
-               this.actionCooldown = 5;
-               this.infoElement.innerHTML = `MBTI: ${this.mbti}<br>Money: $${this.money}`;
+                     console.error(`Failed to call ${llm.toUpperCase()} API : `, error);
+                   throw error;
+                }
+          }
+          work() {
+              if (this.isSleeping) return;
+               this.money += Math.floor(Math.random() * 10) + 10;
+                this.actionCooldown = 5;
+              this.infoElement.innerHTML = `MBTI: ${this.mbti}<br>Money: $${this.money}`;
             }
              sleep() {
-                 this.isSleeping = true;
-               this.actionCooldown = 10;
-               setTimeout(() => {
-                 this.isSleeping = false;
-                  }, 10000);
+                this.isSleeping = true;
+                this.actionCooldown = 10;
+                setTimeout(() => {
+                     this.isSleeping = false;
+                }, 10000);
             }
-         }
-        function addAgent() {
+        }
+       function addAgent() {
             const agent = new Agent(nextAgentId++);
-            agents.push(agent);
-       }
-      async function handleInteractions() {
+             agents.push(agent);
+        }
+        async function handleInteractions() {
            if (agents.length < 2) return;
                for (let i = 0; i < agents.length; i++) {
                 const agent1 = agents[i];
-                 for (let j = i + 1; j < agents.length; j++) {
+                for (let j = i + 1; j < agents.length; j++) {
                    const agent2 = agents[j];
                      const dx = agent1.x - agent2.x;
-                       const dy = agent1.y - agent2.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                  if (distance < INTERACTION_RADIUS && Math.random() > 0.5) {
-                        if (agent1.actionCooldown <= 0 && !agent1.isSleeping) {
-                             let reply;
-                             if (agent1.dialogueHistory.length === 0) {
-                                  reply = await agent1.startDialogue(agent2, "favorite hobbies");
-                              } else {
-                                 reply = await agent1.continueDialogue(agent2, agent1.dialogueHistory[agent1.dialogueHistory.length - 1].response);
+                    const dy = agent1.y - agent2.y;
+                     const distance = Math.sqrt(dx * dx + dy * dy);
+                   if (distance < INTERACTION_RADIUS && Math.random() > 0.5) {
+                       if (agent1.actionCooldown <= 0 && !agent1.isSleeping) {
+                         let reply;
+                            if (agent1.dialogueHistory.length === 0) {
+                                reply = await agent1.startDialogue(agent2, "favorite hobbies");
+                             } else {
+                                reply = await agent1.continueDialogue(agent2, agent1.dialogueHistory[agent1.dialogueHistory.length - 1].response);
                            }
-                          if (reply) {
-                               interactions.push({ agent1, agent2 });
-                                 agent1.actionCooldown = 5;
-                             }
+                        if (reply) {
+                              interactions.push({ agent1, agent2 });
+                              agent1.actionCooldown = 5;
+                            }
                        }
                   }
-               }
+                }
            }
        }
-          function performAgentActions() {
-            agents.forEach(agent => {
-                if (agent.actionCooldown > 0) {
+
+       function performAgentActions() {
+          agents.forEach(agent => {
+              if (agent.actionCooldown > 0) {
                     agent.actionCooldown--;
-                 } else {
-                     const actionType = Math.random();
+                } else {
+                    const actionType = Math.random();
                     if (actionType < 0.1) {
-                        agent.sleep();
-                      } else if (actionType < 0.4) {
-                         agent.work();
-                    }
-                 }
+                       agent.sleep();
+                    } else if (actionType < 0.4) {
+                      agent.work();
+                     }
+                }
            });
         }
+
          function drawInteractions() {
-             ctx.clearRect(0, 0, canvas.width, canvas.height);
-               interactions.forEach(({ agent1, agent2 }) => {
-                    ctx.beginPath();
-                  ctx.moveTo(agent1.x, agent1.y);
-                    ctx.lineTo(agent2.x, agent2.y);
-                   ctx.strokeStyle = 'red';
-                 ctx.stroke();
-            });
-        }
-         function updateTime() {
-           currentMinute++;
-                if (currentMinute === 60) {
-                    currentMinute = 0;
-                     currentHour++;
-                   if (currentHour === 24)
-                       currentHour = 0;
-                }
-                const formattedHour = String(currentHour).padStart(2, '0');
-                 const formattedMinute = String(currentMinute).padStart(2, '0');
-                currentTimeDisplay.innerHTML = `Time: ${formattedHour}:${formattedMinute}`;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            interactions.forEach(({ agent1, agent2 }) => {
+                 ctx.beginPath();
+               ctx.moveTo(agent1.x, agent1.y);
+               ctx.lineTo(agent2.x, agent2.y);
+               ctx.strokeStyle = 'red';
+              ctx.stroke();
+           });
+       }
+        function updateTime() {
+            currentMinute++;
+              if (currentMinute === 60) {
+                currentMinute = 0;
+                 currentHour++;
+                if (currentHour === 24)
+                      currentHour = 0;
             }
-         function updateWeather() {
-             const weatherType = WEATHER_TYPES[Math.floor(Math.random() * WEATHER_TYPES.length)];
-             currentWeatherDisplay.innerHTML = `Weather: ${weatherType}`;
-          }
-       function update() {
+            const formattedHour = String(currentHour).padStart(2, '0');
+            const formattedMinute = String(currentMinute).padStart(2, '0');
+           currentTimeDisplay.innerHTML = `Time: ${formattedHour}:${formattedMinute}`;
+        }
+       function updateWeather() {
+         const weatherType = WEATHER_TYPES[Math.floor(Math.random() * WEATHER_TYPES.length)];
+          currentWeatherDisplay.innerHTML = `Weather: ${weatherType}`;
+       }
+        function update() {
            agents.forEach(agent => agent.move());
-         drawInteractions();
-             interactions = [];
+          drawInteractions();
+           interactions = [];
            requestAnimationFrame(update);
         }
          function setAgentLLM() {
@@ -467,27 +467,39 @@
              agents.forEach((agent) => agent.llm = selectedLLM);
          }
          llmSelect.addEventListener('change', setAgentLLM);
-         supabase.channel('messages').on(
+        supabase.channel('messages').on(
               supabase.realtime('*', { self: false }),
-                 (payload) => {
-                   const message = payload.new;
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add("message")
-                   messageElement.innerHTML = `<b>${message.sender}:</b> ${message.text}`;
-                   dialogueBox.appendChild(messageElement);
-                    dialogueBox.scrollTop = dialogueBox.scrollHeight;
+                (payload) => {
+                     try {
+                         const message = payload.new;
+                         const messageElement = document.createElement('div');
+                          messageElement.classList.add("message")
+                         messageElement.innerHTML = `<b>${message.sender}:</b> ${message.text}`;
+                           dialogueBox.appendChild(messageElement);
+                            dialogueBox.scrollTop = dialogueBox.scrollHeight;
+                     } catch(error) {
+                           console.error("Supabase Realtime Error:", error);
+                       }
+                }
+           ).subscribe(status => {
+           if (status === "SUBSCRIBED"){
+              console.log("Supabase Realtime subcribed");
+              } else {
+              console.log("Supabase Realtime subscription failed");
              }
-            ).subscribe();
+           });
         setInterval(handleInteractions, INTERACTION_TIME_DELAY);
-          setInterval(updateTime, 1000);
-           setInterval(updateWeather, 10000);
-        setInterval(performAgentActions, 1000);
+        setInterval(updateTime, 1000);
+        setInterval(updateWeather, 10000);
+       setInterval(performAgentActions, 1000);
+
         for (let i = 0; i < 10; i++)
             addAgent();
-        update();
-      updateWeather();
-        setInterval(() => {
-          if(Math.random() > 0.5)
+       update();
+       updateWeather();
+
+      setInterval(() => {
+           if(Math.random() > 0.5)
              addAgent();
       }, 5000);
     </script>
