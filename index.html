@@ -1,21 +1,142 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Sims-like Agent Simulation</title>
     <style>
-        body { margin: 0; overflow: hidden; font-family: sans-serif; }
-        #simCanvas { display: block; background-size: cover; position: relative; }
-        .agent { position: absolute; width: 50px; height: 50px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-        .agent img { width: 100%; height: 100%; object-fit: cover; }
-        .agent-info { position: absolute; bottom: 0; left: 0; background: rgba(255, 255, 255, 0.7); padding: 5px; border-radius: 5px; font-size: 10px; width: max-content; margin-bottom: 5px; }
-        #dialogueBox { position: absolute; top: 10px; left: 10px; background: white; padding: 10px; border: 1px solid #ccc; max-height: 300px; overflow-y: scroll; width: 300px; }
-        #uiPanel { position: absolute; bottom: 10px; left: 10px; background: white; padding: 10px; border: 1px solid #ccc; width: 300px; }
-        #apiInput { position: absolute; top: 10px; right: 10px; padding: 10px; background: white; border: 1px solid #ccc; width: 300px; }
-        #apiInput label { display: block; margin-bottom: 5px; }
-        #apiInput input { margin-bottom: 10px; }
-        #llmSelect { margin-bottom: 10px; }
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        #simCanvas {
+            display: block;
+            background-size: cover;
+            position: relative;
+        }
+
+        .agent {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .agent img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+             border-radius: 50%;
+        }
+
+        .agent-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+             background: rgba(255, 255, 255, 0.7);
+             padding: 5px;
+             border-radius: 5px;
+            font-size: 11px;
+           width: max-content;
+            margin-bottom: 5px;
+             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #dialogueBox {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            max-height: 300px;
+            overflow-y: scroll;
+            width: 320px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           
+        }
+
+        #uiPanel {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+             background: white;
+              padding: 15px;
+            border-radius: 10px;
+             width: 320px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #uiPanel p {
+            margin: 5px 0; /* 간격 조정 */
+            font-size: 14px; /* 글자 크기 조정 */
+            color: #333; /* 글자 색상 조정 */
+             text-align: left;
+        }
+         #apiInput {
+            position: absolute;
+            top: 10px;
+             right: 10px;
+              padding: 15px;
+            background: white;
+           border-radius: 10px;
+              width: 320px;
+             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #apiInput label {
+            display: block;
+            margin-bottom: 5px;
+              font-size: 14px; /* 레이블 글자 크기 조정 */
+           color: #555; /* 레이블 글자 색상 조정 */
+            text-align: left; /* 레이블 왼쪽 정렬 */
+        }
+
+        #apiInput input {
+              margin-bottom: 10px;
+              padding: 10px;
+             border: 1px solid #ddd; /* 입력 칸 테두리 색상 */
+             border-radius: 5px; /* 입력 칸 테두리 둥글게 */
+                font-size: 14px; /* 입력 칸 글자 크기 조정 */
+            color: #333; /* 입력 칸 글자 색상 */
+            width: 100%;
+              box-sizing: border-box; /* 패딩, 테두리 포함하여 너비 계산 */
+        }
+
+        #apiInput select {
+               margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #ddd; /* 셀렉트 테두리 색상 */
+                border-radius: 5px; /* 셀렉트 테두리 둥글게 */
+                font-size: 14px; /* 셀렉트 글자 크기 조정 */
+                color: #333; /* 셀렉트 글자 색상 */
+                 width: 100%;
+                  box-sizing: border-box; /* 패딩, 테두리 포함하여 너비 계산 */
+        }
+
+        #llmSelect {
+            margin-bottom: 10px;
+        }
+         .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #555;
+         }
+
+        .hidden {
+             display: none;
+         }
     </style>
 </head>
+
 <body>
     <canvas id="simCanvas"></canvas>
     <div id="dialogueBox"></div>
@@ -24,33 +145,32 @@
         <p id="currentWeather">Weather: Loading...</p>
     </div>
     <div id="apiInput">
-        <label for="geminiApiKey">Gemini API Key:</label>
-        <input type="text" id="geminiApiKey"><br>
-        <label for="gptApiKey">GPT API Key:</label>
-        <input type="text" id="gptApiKey"><br>
+        <label for="geminiApiKey">API Key:</label>
+         <input type="text" id="apiKeyInput" placeholder="Enter your API key" autofocus><br>
         <label for="llmSelect">LLM:</label>
         <select id="llmSelect">
-            <option value="gemini">Gemini</option>
-            <option value="gpt">GPT</option>
-            <option value="random">Random</option>
+             <option value="gemini">Gemini</option>
+              <option value="gpt">GPT</option>
+              <option value="random">Random</option>
         </select>
     </div>
+    <div id="loading" class="loading hidden">Loading...</div>
     <script>
         const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
         const dialogueBox = document.getElementById('dialogueBox');
         const currentTimeDisplay = document.getElementById("currentTime");
         const currentWeatherDisplay = document.getElementById("currentWeather");
-        const geminiApiKeyInput = document.getElementById('geminiApiKey');
-        const gptApiKeyInput = document.getElementById('gptApiKey');
+        const apiKeyInput = document.getElementById('apiKeyInput');
         const llmSelect = document.getElementById('llmSelect');
+        const loadingDiv = document.getElementById("loading");
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.backgroundImage = "url('bg.png')";
-        const AGENT_SIZE = 50;
+        const AGENT_SIZE = 60;
         const AGENT_SPEED = 0.5;
         const INTERACTION_RADIUS = 80;
-        const INTERACTION_TIME_DELAY = 1000; // milliseconds
+        const INTERACTION_TIME_DELAY = 1000;
         const WEATHER_TYPES = ["Sunny", "Cloudy", "Rainy", "Snowy", "Windy", "Foggy"];
         const IMAGES = [
             "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png"
@@ -62,6 +182,21 @@
         let currentHour = 0;
         let currentMinute = 0;
         let weatherData = {};
+
+        function showLoading() {
+             loadingDiv.classList.remove("hidden");
+         }
+      function hideLoading() {
+             loadingDiv.classList.add("hidden");
+         }
+        function determineLLM(apiKey) {
+          if (apiKey.startsWith("AIza"))
+              return "gemini";
+           else if (apiKey.startsWith("sk-"))
+              return "gpt";
+          else
+             return null;
+         }
 
         class Agent {
             constructor(id) {
@@ -77,18 +212,18 @@
                 this.interests = ["AI", "hiking", "reading", "coding", "gaming", "music", "history", "literature", "travel"];
                 this.imageUrl = IMAGES[id % IMAGES.length];
                 this.llm = llmSelect.value;
-                this.isSleeping = false;
+                 this.isSleeping = false;
                 this.actionCooldown = 0;
                 this.element = document.createElement('div');
                 this.element.classList.add('agent');
                 this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
                 this.element.style.top = `${this.y - AGENT_SIZE / 2}px`;
-                this.element.innerHTML = `<img src="${this.imageUrl}" alt="${this.name}">`;
+                  this.element.innerHTML = `<img src="${this.imageUrl}" alt="${this.name}">`;
                 this.infoElement = document.createElement('div');
                 this.infoElement.classList.add('agent-info');
                 this.infoElement.innerHTML = `<b>${this.name}</b><br>MBTI: ${this.mbti}<br>Money: $${this.money}`;
-                this.element.appendChild(this.infoElement);
-                document.body.appendChild(this.element);
+                 this.element.appendChild(this.infoElement);
+                 document.body.appendChild(this.element);
             }
             move() {
                 if (this.isSleeping) return;
@@ -106,101 +241,108 @@
                 this.element.style.left = `${this.x - AGENT_SIZE / 2}px`;
                 this.element.style.top = `${this.y - AGENT_SIZE / 2}px`;
             }
-            async startDialogue(otherAgent, topic) {
-                const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? "gemini" : "gpt") : this.llm;
-                const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. You are about to start a conversation with ${otherAgent.name} with MBTI type ${otherAgent.mbti} and $${otherAgent.money}. Start the conversation with the topic: ${topic}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
-                try {
+             async startDialogue(otherAgent, topic) {
+              const apiKey = apiKeyInput.value;
+               const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(apiKey) || "gemini") : (determineLLM(apiKey) || "gpt")) : (determineLLM(apiKey) || this.llm)
+                   const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. You are about to start a conversation with ${otherAgent.name} with MBTI type ${otherAgent.mbti} and $${otherAgent.money}. Start the conversation with the topic: ${topic}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
+              try {
+                    showLoading();
                     const response = await this.callLLM(selectedLLM, prompt);
-                    const reply = response;
-                    this.dialogueHistory.push({ speaker: this.name, response: reply });
-                    otherAgent.dialogueHistory.push({ speaker: this.name, response: reply });
-                    return reply;
+                  const reply = response;
+                   this.dialogueHistory.push({speaker: this.name, response: reply});
+                   otherAgent.dialogueHistory.push({speaker: this.name, response: reply});
+                   return reply
                 } catch (error) {
-                    console.error(`Failed to make startDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
-                    return `Error occurred during dialogue`;
-                }
+                  console.error(`Failed to make startDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
+                    return `Error occurred during dialogue`
+               } finally {
+                   hideLoading();
+               }
             }
+
             async continueDialogue(otherAgent, lastUtterance) {
-                const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? "gemini" : "gpt") : this.llm;
+                  const apiKey = apiKeyInput.value;
+                  const selectedLLM = this.llm === "random" ? (Math.random() > 0.5 ? (determineLLM(apiKey) || "gemini") : (determineLLM(apiKey) || "gpt")) : (determineLLM(apiKey) || this.llm)
                 const prompt = `You are a helpful and friendly person with MBTI type ${this.mbti} and $${this.money}. Based on the following conversation and your personal information, continue the conversation. ${otherAgent.name}: ${lastUtterance}. Current time is ${currentTimeDisplay.innerHTML} and the weather is ${currentWeatherDisplay.innerHTML}`;
-                try {
+              try {
+                  showLoading()
                     const response = await this.callLLM(selectedLLM, prompt);
-                    const reply = response;
-                    this.dialogueHistory.push({ speaker: this.name, response: reply });
-                    otherAgent.dialogueHistory.push({ speaker: this.name, response: reply });
-                    return reply;
-                } catch (error) {
-                    console.error(`Failed to make continueDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
-                    return `Error occurred during dialogue`;
+                   const reply = response;
+                   this.dialogueHistory.push({speaker: this.name, response: reply});
+                   otherAgent.dialogueHistory.push({speaker: this.name, response: reply});
+                   return reply;
+               } catch (error) {
+                console.error(`Failed to make continueDialogue call to ${selectedLLM.toUpperCase()} API: `, error);
+                    return `Error occurred during dialogue`
+                 } finally {
+                    hideLoading();
                 }
-            }
+             }
             async callLLM(llm, prompt) {
-                let apiKey = "";
-                if (llm === "gemini") {
-                    apiKey = geminiApiKeyInput.value;
-                } else if (llm === "gpt") {
-                    apiKey = gptApiKeyInput.value;
-                }
-                try {
+                const apiKey = apiKeyInput.value;
+                  if (!apiKey) {
+                     throw new Error("API key is required");
+                 }
+                   try {
                     if (llm === "gemini") {
                         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                contents: [{
-                                    parts: [{ text: prompt }],
-                                }],
+                             headers: {
+                              'Content-Type': 'application/json'
+                                },
+                             body: JSON.stringify({
+                                 contents: [{
+                                  parts: [{ text: prompt }],
+                               }],
                             }),
                         });
-                        if (!response.ok) {
-                            const errorText = await response.text();
-                            throw new Error(`Gemini API request failed with status ${response.status}: ${errorText}`);
+                       if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Gemini API request failed with status ${response.status}: ${errorText}`);
                         }
-                        const data = await response.json();
-                        return data.candidates[0].content.parts[0].text;
-                    } else if (llm === "gpt") {
-                        const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${apiKey}`
-                            },
+                    const data = await response.json();
+                  return data.candidates[0].content.parts[0].text;
+                   } else if (llm === "gpt") {
+                      const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
+                           method: 'POST',
+                           headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                              },
                             body: JSON.stringify({
                                 model: 'gpt-3.5-turbo',
-                                messages: [{
-                                    role: "user",
-                                    content: prompt
-                                }]
-                            }),
-                        });
-                        if (!response.ok) {
-                            const errorText = await response.text();
-                            throw new Error(`GPT API request failed with status ${response.status}: ${errorText}`);
+                                  messages: [{
+                                      role: "user",
+                                       content: prompt
+                                  }]
+                                }),
+                             });
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                       throw new Error(`GPT API request failed with status ${response.status}: ${errorText}`);
                         }
-                        const data = await response.json();
-                        return data.choices[0].message.content;
-                    } else {
-                        throw new Error("Invalid LLM selected");
-                    }
-                } catch (error) {
-                    console.error(`Failed to call ${llm.toUpperCase()} API : `, error);
-                    throw error;
-                }
-            }
+                    const data = await response.json();
+                       return data.choices[0].message.content;
+                } else {
+                  throw new Error("Invalid LLM selected")
+                   }
+               } catch (error) {
+                   console.error(`Failed to call ${llm.toUpperCase()} API: `, error);
+                      throw error;
+               }
+         }
             work() {
-                if (this.isSleeping) return;
+               if (this.isSleeping) return;
                 this.money += Math.floor(Math.random() * 10) + 10;
                 this.actionCooldown = 5;
                 this.infoElement.innerHTML = `<b>${this.name}</b><br>MBTI: ${this.mbti}<br>Money: $${this.money}`;
-            }
-            sleep() {
-                this.isSleeping = true;
+           }
+             sleep() {
+                  this.isSleeping = true;
                 this.actionCooldown = 10;
-                setTimeout(() => {
+                 setTimeout(() => {
                     this.isSleeping = false;
-                }, 10000);
+                    }, 10000);
             }
         }
         function addAgent() {
@@ -208,46 +350,48 @@
             agents.push(agent);
         }
         async function handleInteractions() {
-            if (agents.length < 2) return;
-            for (let i = 0; i < agents.length; i++) {
-                const agent1 = agents[i];
-                for (let j = i + 1; j < agents.length; j++) {
-                    const agent2 = agents[j];
-                    const dx = agent1.x - agent2.x;
-                    const dy = agent1.y - agent2.y;
+             if (agents.length < 2) return;
+               for (let i = 0; i < agents.length; i++) {
+                 const agent1 = agents[i];
+                  for (let j = i + 1; j < agents.length; j++) {
+                     const agent2 = agents[j];
+                        const dx = agent1.x - agent2.x;
+                      const dy = agent1.y - agent2.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
+
                     if (distance < INTERACTION_RADIUS && Math.random() > 0.5) {
-                        if (agent1.actionCooldown <= 0 && !agent1.isSleeping) {
+                          if (agent1.actionCooldown <= 0 && !agent1.isSleeping) {
                             let reply;
                             if (agent1.dialogueHistory.length === 0) {
                                 reply = await agent1.startDialogue(agent2, "favorite hobbies");
                             } else {
                                 reply = await agent1.continueDialogue(agent2, agent1.dialogueHistory[agent1.dialogueHistory.length - 1].response);
                             }
-                            if (reply) {
-                                interactions.push({ agent1, agent2 });
-                                updateDialogueBox(agent1.dialogueHistory);
-                                agent1.actionCooldown = 5;
+                          if (reply) {
+                            interactions.push({ agent1, agent2 });
+                            updateDialogueBox(agent1.dialogueHistory);
+                             agent1.actionCooldown = 5;
                             }
                         }
-                    }
-                }
-            }
-        }
-        function performAgentActions() {
-            agents.forEach(agent => {
+                      }
+                 }
+               }
+          }
+
+         function performAgentActions() {
+              agents.forEach(agent => {
                 if (agent.actionCooldown > 0) {
-                    agent.actionCooldown--;
+                      agent.actionCooldown--;
                 } else {
-                    const actionType = Math.random();
-                    if (actionType < 0.1) {
-                        agent.sleep();
-                    } else if (actionType < 0.4) {
-                        agent.work();
-                    }
-                }
-            });
-        }
+                     const actionType = Math.random();
+                   if (actionType < 0.1) {
+                      agent.sleep();
+                  } else if (actionType < 0.4) {
+                    agent.work();
+                   }
+                 }
+             });
+          }
         function updateDialogueBox(dialogueHistory) {
             let html = "";
             dialogueHistory.forEach((dialogue) => {
@@ -256,8 +400,8 @@
             dialogueBox.innerHTML = html;
         }
         function drawInteractions() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            interactions.forEach(({ agent1, agent2 }) => {
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
+              interactions.forEach(({ agent1, agent2 }) => {
                 ctx.beginPath();
                 ctx.moveTo(agent1.x, agent1.y);
                 ctx.lineTo(agent2.x, agent2.y);
@@ -278,7 +422,7 @@
             currentTimeDisplay.innerHTML = `Time: ${formattedHour}:${formattedMinute}`;
         }
         function updateWeather() {
-            const weatherType = WEATHER_TYPES[Math.floor(Math.random() * WEATHER_TYPES.length)];
+           const weatherType = WEATHER_TYPES[Math.floor(Math.random() * WEATHER_TYPES.length)];
             currentWeatherDisplay.innerHTML = `Weather: ${weatherType}`;
         }
         function update() {
@@ -287,23 +431,23 @@
             interactions = [];
             requestAnimationFrame(update);
         }
-        function setAgentLLM() {
+         function setAgentLLM() {
             const selectedLLM = llmSelect.value;
             agents.forEach((agent) => agent.llm = selectedLLM);
         }
         llmSelect.addEventListener('change', setAgentLLM);
         setInterval(handleInteractions, INTERACTION_TIME_DELAY);
-        setInterval(updateTime, 1000);
+         setInterval(updateTime, 1000);
         setInterval(updateWeather, 10000);
         setInterval(performAgentActions, 1000);
-      for(let i = 0; i < 10; i++)
-           addAgent();
+        for (let i = 0; i < 10; i++)
+            addAgent();
         update();
-      updateWeather();
-      setInterval(() => {
-          if(Math.random() > 0.5)
-           addAgent();
-      }, 5000);
+       updateWeather();
+        setInterval(() => {
+            if(Math.random() > 0.5)
+             addAgent();
+         }, 5000);
     </script>
 </body>
 </html>
